@@ -13,7 +13,7 @@ import Foundation
  A protocol that groups methods and properties for objects that wants to fire and handle time events.
  
  */
-protocol TimerManagerType {
+public protocol TimerManagerType {
   
   /// The gap between executions in seconds.
   var interval: Double { get }
@@ -68,25 +68,25 @@ protocol TimerManagerType {
  
 */
 
-class TimerManager: TimerManagerType {
+public class TimerManager: TimerManagerType {
   
   private var timer: dispatch_source_t?
   private var pausedTime: Double = 0
   private var repeats: Bool
   
-  private(set) var interval: Double
+  public private(set) var interval: Double
   
-  private(set) var time: Double
+  public private(set) var time: Double
   
-  private(set) var paused: Bool = false
+  public private(set) var paused: Bool = false
   
-  var resumeHandler: ((Double) -> ())?
+  public var resumeHandler: ((Double) -> ())?
   
-  var pauseHandler: ((Double) -> ())?
+  public var pauseHandler: ((Double) -> ())?
   
-  var cancelHandler: (() -> ())?
+  public var cancelHandler: (() -> ())?
   
-  required init?(interval: Double, time: Double, repeats: Bool) {
+  public required init?(interval: Double, time: Double, repeats: Bool) {
     
     self.repeats = repeats
     self.interval = interval
@@ -144,7 +144,7 @@ class TimerManager: TimerManagerType {
     }
   }
   
-  func resume() {
+  public func resume() {
     if !repeats {
       
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(interval * Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -166,14 +166,14 @@ class TimerManager: TimerManagerType {
     }
   }
   
-  func cancel() {
+  public func cancel() {
     
     if timer != nil {
       dispatch_source_cancel(timer!)
     }
   }
   
-  func pause() {
+  public func pause() {
     paused = true
   }
 }
@@ -207,7 +207,7 @@ class TimerManager: TimerManagerType {
   ````
 */
 
-class Timer {
+public class Timer {
   
   private var manager: TimerManagerType?
   
@@ -330,7 +330,7 @@ class Timer {
  ````
  
  */
-class Countdown: Timer {
+public class Countdown: Timer {
   
   override func tick(every interval: Double, _ update: (Double) -> ()) {
     let interval = interval > 0 ? -interval : interval
