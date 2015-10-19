@@ -10,6 +10,7 @@
 		05FF6E141BCAAE1B0010CA91 /* Timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 05FF6E131BCAAE1B0010CA91 /* Timer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05FF6E1B1BCAAE1B0010CA91 /* Timer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FF6E101BCAAE1A0010CA91 /* Timer.framework */; };
 		05FF6E201BCAAE1B0010CA91 /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF6E1F1BCAAE1B0010CA91 /* TimerTests.swift */; };
+		05FF6E2B1BCAAE350010CA91 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF6E2A1BCAAE350010CA91 /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		05FF6E1A1BCAAE1B0010CA91 /* TimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05FF6E1F1BCAAE1B0010CA91 /* TimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
 		05FF6E211BCAAE1B0010CA91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05FF6E2A1BCAAE350010CA91 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				05FF6E131BCAAE1B0010CA91 /* Timer.h */,
 				05FF6E151BCAAE1B0010CA91 /* Info.plist */,
+				05FF6E2A1BCAAE350010CA91 /* Timer.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05FF6E2B1BCAAE350010CA91 /* Timer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +312,7 @@
 		05FF6E251BCAAE1B0010CA91 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -318,12 +323,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wamacam.Timer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		05FF6E261BCAAE1B0010CA91 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
