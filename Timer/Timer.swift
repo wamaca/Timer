@@ -212,13 +212,13 @@ public class Timer {
   private var manager: TimerManagerType?
   
   /// Current timer time.
-  private(set) var time: Double
+  public private(set) var time: Double
   
   /// The gap between executions in seconds.
-  private(set) var interval: Double = 0
+  public private(set) var interval: Double = 0
   
   /// Whether the timer is in paused state or not.
-  private(set) var paused: Bool = false
+  public private(set) var paused: Bool = false
   
   /**
    
@@ -226,7 +226,7 @@ public class Timer {
     to use another manager. It __must__ conforms to `TimerManagerType` protocol.
    
    */
-  class var Manager: TimerManagerType.Type {
+  public class var Manager: TimerManagerType.Type {
     return TimerManager.self
   }
   
@@ -238,7 +238,7 @@ public class Timer {
       - interval: The delay of execution in seconds.
       - update: A closure to handle the timer call.
    */
-  class func once(after interval: Double = 1.0, _ update: () -> ()) {
+  public class func once(after interval: Double = 1.0, _ update: () -> ()) {
     
     var manager = Manager.init(interval: interval, time: 0, repeats: false)
     manager?.resumeHandler = { _ in update() }
@@ -255,7 +255,7 @@ public class Timer {
     - Returns: An initialized timer ready to be used.
    
    */
-  init(initial time: Double = 0.0) {
+  public init(initial time: Double = 0.0) {
     
     self.time = time
   }
@@ -269,7 +269,7 @@ public class Timer {
       - update: A closure to handle each timer call.
    
    */
-  func tick(every interval: Double = 1.0, _ update: (Double) -> ()) {
+  public func tick(every interval: Double = 1.0, _ update: (Double) -> ()) {
     self.interval = interval
     
     manager = self.dynamicType.Manager.init(interval: interval, time: self.time, repeats: true)
@@ -286,7 +286,7 @@ public class Timer {
       - update: A closure to handle each call. It receives the time paused as a parameter. It's optional and defaults to `nil`.
    
    */
-  func pause(during time: Double = 0, _ update: ((Double) -> ())? = nil) {
+  public func pause(during time: Double = 0, _ update: ((Double) -> ())? = nil) {
     
     if update != nil {
       manager?.pauseHandler = { [weak self] in
@@ -301,13 +301,13 @@ public class Timer {
   }
   
   /// Resume the timer after pause it.
-  func resume() {
+  public func resume() {
     paused = false
     manager?.resume()
   }
   
   /// Stop the timer.
-  func stop() {
+  public func stop() {
     manager?.cancel()
   }
 }
@@ -332,7 +332,7 @@ public class Timer {
  */
 public class Countdown: Timer {
   
-  override func tick(every interval: Double, _ update: (Double) -> ()) {
+  override public func tick(every interval: Double, _ update: (Double) -> ()) {
     let interval = interval > 0 ? -interval : interval
     
     if time == 0 {
